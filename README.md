@@ -7,8 +7,8 @@ A chaotic little video-and-audio player powered by Python, OpenCV, Tkinter, and 
 ## 🚀 Features
 
 - Two iconic buttons:  
-  - 🟡 **Tralalero Tralala** — plays `tralalero.mp4` with `tralalero.mp3` (uses `cv2.waitKey(36)`)
-  - 🔵 **Capuchino Assassino** — plays `capuchino.mp4` with `capuchino.mp3` (uses `cv2.waitKey(16)`)
+  - 🟡 **Tralalero Tralala** — plays `tralalero.mp4` with `tralalero.mp3`
+  - 🔵 **Capuchino Assassino** — plays `capuchino.mp4` with `capuchino.mp3` 
 - Audio and video synced for maximum chaos
 - Simple dark-themed GUI
 - Made for laughs. Runs in a window, not in your heart (yet).
