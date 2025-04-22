@@ -20,7 +20,7 @@ def play_video(file_path, audio_path):
         if not ret:
             break
         cv2.imshow("Video", frame)
-        if cv2.waitKey(25) & 0xFF == ord('q'):
+        if cv2.waitKey(36) & 0xFF == ord('q'):
             break
     cap.release()
     cv2.destroyAllWindows()
