@@ -44,10 +44,10 @@ label = tk.Label(root, text="Welcome to Filipino brainrot", font=("Arial", 20), 
 label.pack(pady=30)
 
 # Buttons
-button1 = tk.Button(root, text="tralalero tralala (left)", command=tralalero, width=25, height=2, bg="#ffcc00")
+button1 = tk.Button(root, text="tralalero tralala", command=tralalero, width=25, height=2, bg="#ffcc00")
 button1.pack(pady=10)
 
-button2 = tk.Button(root, text="Capuchino Assassino (right)", command=capuchino, width=25, height=2, bg="#00ccff")
+button2 = tk.Button(root, text="Capuchino Assassino", command=capuchino, width=25, height=2, bg="#00ccff")
 button2.pack(pady=10)
 
 # Start GUI loop
