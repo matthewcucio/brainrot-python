@@ -18,7 +18,7 @@ def play_video(file_path, audio_path, wait_time):
         ret, frame = cap.read()
         if not ret:
             break
-        cv2.imshow("Video", frame)
+        cv2.imshow("Akala mo...", frame)
         if cv2.waitKey(wait_time) & 0xFF == ord('q'):
             break
     cap.release()
