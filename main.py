@@ -2,13 +2,12 @@ import tkinter as tk
 import cv2
 import threading
 import pygame
-import os
 
 # Initialize pygame mixer for audio
 pygame.mixer.init()
 
 # Function to play video using OpenCV and audio using pygame
-def play_video(file_path, audio_path):
+def play_video(file_path, audio_path, wait_time):
     # Start audio playback
     pygame.mixer.music.load(audio_path)
     pygame.mixer.music.play()
@@ -20,7 +19,7 @@ def play_video(file_path, audio_path):
         if not ret:
             break
         cv2.imshow("Video", frame)
-        if cv2.waitKey(36) & 0xFF == ord('q'):
+        if cv2.waitKey(wait_time) & 0xFF == ord('q'):
             break
     cap.release()
     cv2.destroyAllWindows()
@@ -28,10 +27,10 @@ def play_video(file_path, audio_path):
 
 # Functions triggered by button clicks
 def tralalero():
-    threading.Thread(target=play_video, args=("tralalero.mp4", "tralalero.mp3"), daemon=True).start()
+    threading.Thread(target=play_video, args=("tralalero.mp4", "tralalero.mp3", 36), daemon=True).start()
 
 def capuchino():
-    threading.Thread(target=play_video, args=("capuchino.mp4", "capuchino.mp3"), daemon=True).start()
+    threading.Thread(target=play_video, args=("capuchino.mp4", "capuchino.mp3", 11), daemon=True).start()
 
 # GUI Window
 root = tk.Tk()
@@ -40,8 +39,12 @@ root.geometry("500x300")
 root.configure(bg="black")
 
 # Welcome Label
-label = tk.Label(root, text="Welcome to Filipino brainrot", font=("Arial", 20), fg="white", bg="black")
+label = tk.Label(root, text="Welcome to Filipino Brainrot", font=("Arial", 20), fg="white", bg="black")
 label.pack(pady=30)
+
+# Author Label
+author_label = tk.Label(root, text="by Matthewmatician", font=("Arial", 14), fg="white", bg="black")
+author_label.pack(pady=(0, 20))
 
 # Buttons
 button1 = tk.Button(root, text="tralalero tralala", command=tralalero, width=25, height=2, bg="#ffcc00")
