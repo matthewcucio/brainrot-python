@@ -30,7 +30,7 @@ def tralalero():
     threading.Thread(target=play_video, args=("tralalero.mp4", "tralalero.mp3", 36), daemon=True).start()
 
 def capuchino():
-    threading.Thread(target=play_video, args=("capuchino.mp4", "capuchino.mp3", 11), daemon=True).start()
+    threading.Thread(target=play_video, args=("capuchino.mp4", "capuchino.mp3", 12), daemon=True).start()
 
 # GUI Window
 root = tk.Tk()
