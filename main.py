@@ -1,10 +1,19 @@
 import tkinter as tk
-from tkinter import messagebox
 import cv2
 import threading
+import pygame
+import os
 
-# Function to play video using OpenCV
-def play_video(file_path):
+# Initialize pygame mixer for audio
+pygame.mixer.init()
+
+# Function to play video using OpenCV and audio using pygame
+def play_video(file_path, audio_path):
+    # Start audio playback
+    pygame.mixer.music.load(audio_path)
+    pygame.mixer.music.play()
+
+    # OpenCV for video playback
     cap = cv2.VideoCapture(file_path)
     while cap.isOpened():
         ret, frame = cap.read()
@@ -15,13 +24,14 @@ def play_video(file_path):
             break
     cap.release()
     cv2.destroyAllWindows()
+    pygame.mixer.music.stop()  # Stop the audio when the video ends
 
 # Functions triggered by button clicks
 def tralalero():
-    threading.Thread(target=play_video, args=("tralalero.mp4",), daemon=True).start()
+    threading.Thread(target=play_video, args=("tralalero.mp4", "tralalero.mp3"), daemon=True).start()
 
 def capuchino():
-    threading.Thread(target=play_video, args=("capuchino.mp4",), daemon=True).start()
+    threading.Thread(target=play_video, args=("capuchino.mp4", "capuchino.mp3"), daemon=True).start()
 
 # GUI Window
 root = tk.Tk()
