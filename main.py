@@ -56,7 +56,7 @@ main_frame.pack()
 title = tk.Label(main_frame, text="🎬 Brainlapse", font=("Segoe UI", 24, "bold"), fg="white", bg="#1a1a1a")
 title.pack(pady=(0, 5))
 
-author = tk.Label(main_frame, text="by Matthewmatician", font=("Segoe UI", 12), fg="#cccccc", bg="#1a1a1a")
+author = tk.Label(main_frame, text="Python Tkinter Practice by Matthewmatician", font=("Segoe UI", 12), fg="#cccccc", bg="#1a1a1a")
 author.pack(pady=(0, 20))
 
 # --- Gradient Button Function ---
