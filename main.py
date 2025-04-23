@@ -29,13 +29,13 @@ def tralalero():
 def capuchino():
     threading.Thread(target=play_video, args=("capuchino.mp4", "capuchino.mp3", 12), daemon=True).start()
 
-# Main App
+# --- GUI Setup ---
 root = tk.Tk()
 root.title("Brainlapse")
 root.geometry("700x450")
 root.resizable(False, False)
 
-# Gradient Background (horizontal)
+# Gradient Background
 canvas = Canvas(root, width=700, height=450)
 canvas.pack(fill="both", expand=True)
 
@@ -45,11 +45,10 @@ for i in range(700):
     color = f'#{red:02x}30{blue:02x}'
     canvas.create_line(i, 0, i, 450, fill=color)
 
-# Simulate Rounded Black Box
-rounded_box = tk.Frame(root, bg="#1a1a1a", bd=0)
+# Rounded black box (center container)
+rounded_box = tk.Frame(root, bg="#1a1a1a")
 rounded_box.place(relx=0.5, rely=0.5, anchor="center")
 
-# Add padding inside the box
 main_frame = tk.Frame(rounded_box, bg="#1a1a1a", padx=40, pady=30)
 main_frame.pack()
 
@@ -60,25 +59,45 @@ title.pack(pady=(0, 5))
 author = tk.Label(main_frame, text="by Matthewmatician", font=("Segoe UI", 12), fg="#cccccc", bg="#1a1a1a")
 author.pack(pady=(0, 20))
 
-# Modern Button Function
-def create_modern_button(text, command, bg_color, hover_color):
-    btn = tk.Label(main_frame, text=text, font=("Segoe UI", 12, "bold"), bg=bg_color, fg="black",
-                   width=25, height=2, bd=0, relief="flat", cursor="hand2")
-    btn.pack(pady=10)
+# --- Gradient Button Function ---
+def create_gradient_button(parent, text, command, width=250, height=50, start_color="#ff9f30", end_color="#641aff"):
+    btn_canvas = Canvas(parent, width=width, height=height, bd=0, highlightthickness=0, relief="ridge", cursor="hand2")
 
-    def on_enter(e):
-        btn.config(bg=hover_color)
+    def lighten(hex_color, factor=0.15):
+        r = int(hex_color[1:3], 16)
+        g = int(hex_color[3:5], 16)
+        b = int(hex_color[5:7], 16)
+        r = min(int(r + (255 - r) * factor), 255)
+        g = min(int(g + (255 - g) * factor), 255)
+        b = min(int(b + (255 - b) * factor), 255)
+        return f'#{r:02x}{g:02x}{b:02x}'
 
-    def on_leave(e):
-        btn.config(bg=bg_color)
+    normal_colors = (start_color, end_color)
+    hover_colors = (lighten(start_color), lighten(end_color))
 
-    btn.bind("<Enter>", on_enter)
-    btn.bind("<Leave>", on_leave)
-    btn.bind("<Button-1>", lambda e: command())
-    return btn
+    def draw_gradient(start, end):
+        btn_canvas.delete("all")
+        r1, g1, b1 = int(start[1:3], 16), int(start[3:5], 16), int(start[5:7], 16)
+        r2, g2, b2 = int(end[1:3], 16), int(end[3:5], 16), int(end[5:7], 16)
+        for i in range(width):
+            r = int(r1 + (r2 - r1) * (i / width))
+            g = int(g1 + (g2 - g1) * (i / width))
+            b = int(b1 + (b2 - b1) * (i / width))
+            hex_color = f'#{r:02x}{g:02x}{b:02x}'
+            btn_canvas.create_line(i, 0, i, height, fill=hex_color)
+        btn_canvas.create_text(width // 2, height // 2, text=text, fill="white", font=("Segoe UI", 12, "bold"), tags="button_text")
 
-# Buttons 
-create_modern_button("🦈 Tralalero Tralala", tralalero, "#00ccff", "#66e0ff")
-create_modern_button("☕ Capuchino Assassino", capuchino, "#ffd700", "#ffee88")
+    draw_gradient(*normal_colors)
+
+    btn_canvas.bind("<Button-1>", lambda event: command())
+    btn_canvas.bind("<Enter>", lambda e: draw_gradient(*hover_colors))
+    btn_canvas.bind("<Leave>", lambda e: draw_gradient(*normal_colors))
+
+    btn_canvas.pack(pady=10)
+
+
+# Buttons
+create_gradient_button(main_frame, "🦈 Tralalero Tralala", tralalero)
+create_gradient_button(main_frame, "☕ Capuchino Assassino", capuchino, start_color="#641aff", end_color="#ff9f30")
 
 root.mainloop()
