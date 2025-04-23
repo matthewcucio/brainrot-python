@@ -78,7 +78,7 @@ def create_modern_button(text, command, bg_color, hover_color):
     return btn
 
 # Buttons 
-create_modern_button("🦈 tralalero tralala", tralalero, "#00ccff", "#66e0ff")
+create_modern_button("🦈 Tralalero Tralala", tralalero, "#00ccff", "#66e0ff")
 create_modern_button("☕ Capuchino Assassino", capuchino, "#ffd700", "#ffee88")
 
 root.mainloop()
