@@ -10,7 +10,7 @@ A chaotic little video-and-audio player powered by Python, OpenCV, Tkinter, and 
   - 🔵 **Tralalero Tralala** — plays `tralalero.mp4` with `tralalero.mp3`
   - 🟡 **Capuchino Assassino** — plays `capuchino.mp4` with `capuchino.mp3` 
 - Audio and video synced for maximum chaos
-- Simple dark-themed GUI
+- Gradient-themed GUI
 - Made for laughs. Runs in a window, not in your heart (yet).
 
 ## 🛠️ Requirements
